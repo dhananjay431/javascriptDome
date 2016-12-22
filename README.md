@@ -514,17 +514,7 @@ onClick=<span class="code-string">"</span><span class="code-string">parent.frame
               access another frame. "parent" standards for the parent
               frame containing the frameset code.</p>
             <hr>
-            <p align="center"><a href="#top">Back to top</a></p>
 
-
-						</div>
-						
-
-						<div class="float-right" style="margin:20px 0 0 10px;border:1px solid #ccc">
-						<div class="msg-300x250" data-format="300x250" data-type="ad" data-publisher="lqm.codeproject.site" data-zone="Web-Development/Client-side-scripting/Beginners" data-loadonview="true" data-tags="VC6, Win2K, C++, Javascript, Windows, Visual-Studio, Dev, Beginner,rating4.5"><noscript>&lt;a href="https://pubads.g.doubleclick.net/gampad/jump?iu=/6839/lqm.codeproject.site/Web-Development/Client-side-scripting/Beginners&amp;sz=300x250&amp;c=68069"&gt;&lt;img src="https://pubads.g.doubleclick.net/gampad/jump?iu=/6839/lqm.codeproject.site/Web-Development/Client-side-scripting/Beginners&amp;sz=300x250&amp;c=68069"  width="300px" height="250px" target="_blank"/&gt;&lt;/a&gt;</noscript></div>
-						</div>
-                        
-                        
 						
 		
 
