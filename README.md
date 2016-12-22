@@ -529,3 +529,531 @@ onClick=<span class="code-string">"</span><span class="code-string">parent.frame
 		
 
 			</div>
+<div class="w3-col l10 m12" id="main">
+<hr>
+<p class="intro">A typical thing to do with numbers is arithmetic.</p>
+
+<hr>
+
+<h2>JavaScript Arithmetic Operators</h2>
+<p>Arithmetic operators perform arithmetic on numbers (literals or variables).</p>
+
+<table class="w3-table-all notranslate">
+<tbody><tr>
+<th style="width:25%">Operator</th>
+<th>Description</th>
+</tr>
+<tr>
+<td>+</td>
+<td>Addition</td>
+</tr>
+<tr>
+<td>-</td>
+<td>Subtraction</td>
+</tr>
+<tr>
+<td>*</td>
+<td>Multiplication</td>
+</tr>
+<tr>
+<td>/</td>
+<td>Division</td>
+</tr>
+<tr>
+<td>%</td>
+<td>Modulus</td>
+</tr>
+<tr>
+<td>++</td>
+<td>Increment</td>
+</tr>
+<tr>
+<td>--</td>
+<td>Decrement</td>
+</tr>
+</tbody></table>
+<hr>
+<h2>Arithmetic Operations</h2>
+<p>A typical arithmetic operation operates on two numbers.</p>
+<p>The two numbers can be literals:</p>
+<div class="w3-example">
+<h3>Example</h3>
+<div class="w3-code notranslate jsHigh"><span style="color:black">
+<span style="color:mediumblue">var</span> x = <span style="color:red">100</span> + <span style="color:red">50</span>;
+</span></div>
+
+</div>
+<p>or variables:</p>
+<div class="w3-example">
+<h3>Example</h3>
+ <div class="w3-code notranslate jsHigh"><span style="color:black"><span style="color:red">
+</span>  <span style="color:mediumblue">var</span> x = a + b;
+</span></div>
+<a class="w3-btn w3-margin-bottom" href="tryit.asp?filename=tryjs_arithmetic_variables" target="_blank"> </a>
+</div>
+<p>or expressions:</p>
+<div class="w3-example">
+<h3>Example</h3>
+ <div class="w3-code notranslate jsHigh"><span style="color:black"><span style="color:red">
+</span>  <span style="color:mediumblue">var</span> x = (<span style="color:red">100</span> + <span style="color:red">50</span>) * a;
+</span></div>
+<a class="w3-btn w3-margin-bottom" href="tryit.asp?filename=tryjs_arithmetic_expressions" target="_blank"> </a>
+</div>
+<hr>
+<h2>Operators and Operands</h2>
+<p>The numbers (in an arithmetic operation) are called <strong>operands</strong>.</p>
+<p>The operation (to be performed between the two operands) is defined by an <strong>operator</strong>.</p>
+
+<table class="w3-table-all" style="width: 50%">
+ <tbody><tr>
+  <th>Operand</th>
+  <th>Operator</th>
+  <th>Operand</th>
+ </tr>
+ <tr>
+  <td>100</td>
+  <td>+</td>
+  <td>50</td>
+ </tr>
+</tbody></table>
+
+<p>The <strong>addition</strong> operator (+) adds numbers:</p>
+<div class="w3-example">
+<h3>Adding</h3>
+<div class="w3-code notranslate jsHigh"><span style="color:black">
+<span style="color:mediumblue">var</span> x = <span style="color:red">5</span>;<br>
+<span style="color:mediumblue">var</span> y = <span style="color:red">2</span>;<br><span style="color:mediumblue">var</span> z = x + y;
+</span></div>
+<a class="w3-btn w3-margin-bottom" href="tryit.asp?filename=tryjs_oper_add" target="_blank"> </a>
+</div>
+<p>The <strong>subtraction</strong> operator (-) subtracts numbers.</p>
+<div class="w3-example">
+<h3>Subtracting</h3>
+<div class="w3-code notranslate jsHigh"><span style="color:black">
+<span style="color:mediumblue">var</span> x = <span style="color:red">5</span>;<br>
+<span style="color:mediumblue">var</span> y = <span style="color:red">2</span>;<br><span style="color:mediumblue">var</span> z = x - y;
+</span></div>
+<a class="w3-btn w3-margin-bottom" href="tryit.asp?filename=tryjs_oper_sub" target="_blank"> </a>
+</div>
+<p>The <strong>multiplication</strong> operator (*) multiplies numbers.</p>
+<div class="w3-example">
+<h3>Multiplying</h3>
+<div class="w3-code notranslate jsHigh"><span style="color:black">
+<span style="color:mediumblue">var</span> x = <span style="color:red">5</span>;<br>
+<span style="color:mediumblue">var</span> y = <span style="color:red">2</span>;<br><span style="color:mediumblue">var</span> z = x * y;
+</span></div>
+<a class="w3-btn w3-margin-bottom" href="tryit.asp?filename=tryjs_oper_mult" target="_blank"> </a>
+</div>
+<p>The <strong>division</strong> operator (/) divides numbers.</p>
+<div class="w3-example">
+<h3>Dividing</h3>
+<div class="w3-code notranslate jsHigh"><span style="color:black">
+<span style="color:mediumblue">var</span> x = <span style="color:red">5</span>;<br><span style="color:mediumblue">var</span> y = <span style="color:red">2</span>;<br>
+<span style="color:mediumblue">var</span> z = x / y;
+</span></div>
+<a class="w3-btn w3-margin-bottom" href="tryit.asp?filename=tryjs_oper_div" target="_blank"> </a>
+</div>
+
+<p>The <strong>modular</strong> operator (%) returns the division remainder.</p>
+<div class="w3-example">
+<h3>Modulus</h3>
+<div class="w3-code notranslate jsHigh"><span style="color:black">
+<span style="color:mediumblue">var</span> x = <span style="color:red">5</span>;<br><span style="color:mediumblue">var</span> y = <span style="color:red">2</span>;<br>
+<span style="color:mediumblue">var</span> z = x % y;
+</span></div>
+<a class="w3-btn w3-margin-bottom" href="tryit.asp?filename=tryjs_oper_mod" target="_blank"> </a>
+</div>
+
+<p>The <strong>increment</strong> operator (++) increments numbers.</p>
+<div class="w3-example">
+<h3>Incrementing</h3>
+<div class="w3-code notranslate jsHigh"><span style="color:black">
+<span style="color:mediumblue">var</span> x = <span style="color:red">5</span>;<br>x++;<br><span style="color:mediumblue">var</span> z = x;</span></div>
+<a class="w3-btn w3-margin-bottom" href="tryit.asp?filename=tryjs_oper_increment" target="_blank"> </a>
+</div>
+<p>The <strong>decrement</strong> operator (--) decrements numbers.</p>
+<div class="w3-example">
+<h3>Decrementing</h3>
+<div class="w3-code notranslate jsHigh"><span style="color:black">
+<span style="color:mediumblue">var</span> x = <span style="color:red">5</span>;<br><span style="color:red">
+</span> x--;<br><span style="color:mediumblue">var</span> z = x;
+</span></div>
+<a class="w3-btn w3-margin-bottom" href="tryit.asp?filename=tryjs_oper_decrement" target="_blank"> </a>
+</div>
+
+<hr>
+<h2>Operator Precedence</h2>
+<p>Operator precedence describes the order in which operations are performed in 
+an arithmetic expression.</p>
+<div class="w3-example">
+<h3>Example</h3>
+<div class="w3-code notranslate jsHigh"><span style="color:black">
+<span style="color:mediumblue">var</span> x = <span style="color:red">100</span> + <span style="color:red">50</span> * <span style="color:red">3</span>;
+</span></div>
+<a class="w3-btn w3-margin-bottom" href="tryit.asp?filename=tryjs_arithmetic_precedence1" target="_blank"> </a>
+</div>
+<p>Is the result of example above the same as 150 * 3, or is it the same as 100 
++ 150?</p>
+<p>Is the addition or the multiplication done first?</p>
+<p>As in traditional school mathematics, the multiplication is done first.</p>
+<p>Multiplication (*) and division (/) have higher <strong>precedence</strong> than 
+addition (+) and subtraction (-).</p>
+<p>And (as in school mathematics) the precedence can be changed by using 
+parentheses:</p>
+<div class="w3-example">
+<h3>Example</h3>
+<div class="w3-code notranslate jsHigh"><span style="color:black">
+<span style="color:mediumblue">var</span> x = (<span style="color:red">100</span> + <span style="color:red">50</span>) * <span style="color:red">3</span>;
+</span></div>
+<a class="w3-btn w3-margin-bottom" href="tryit.asp?filename=tryjs_arithmetic_precedence2" target="_blank"> </a>
+</div>
+<p>When using parentheses, the operations inside the parentheses are computed 
+first. </p>
+<p>When many operations have the same precedence (like addition and 
+subtraction), they are computed from left to 
+right: </p>
+<div class="w3-example">
+<h3>Example</h3>
+<div class="w3-code notranslate jsHigh"><span style="color:black">
+<span style="color:mediumblue">var</span> x = <span style="color:red">100</span> + <span style="color:red">50</span> - <span style="color:red">3</span>;
+</span></div>
+<a class="w3-btn w3-margin-bottom" href="tryit.asp?filename=tryjs_arithmetic_precedence3" target="_blank"> </a>
+</div>
+
+<hr>
+<h2>JavaScript Operator Precedence Values</h2>
+
+<table class="w3-table-all">
+ <tbody><tr>
+  <th style="width:10%">Value</th>
+  <th style="width:15%">Operator</th>
+  <th>Description</th>
+  <th>Example</th>
+ </tr>
+ <tr>
+  <td>19</td>
+  <td>( )</td>
+  <td>Expression grouping</td>
+  <td>(3 + 4)</td>
+ </tr>
+ <tr>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+ </tr>
+ <tr>
+  <td>18</td>
+  <td>.</td>
+  <td>Member</td>
+  <td>person.name</td>
+ </tr>
+ <tr>
+  <td>18</td>
+  <td>[]</td>
+  <td>Member</td>
+  <td>person["name"]</td>
+ </tr>
+ <tr>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+ </tr>
+ <tr>
+  <td>17</td>
+  <td>()</td>
+  <td>Function call</td>
+  <td>myFunction()</td>
+ </tr>
+ <tr>
+  <td>17</td>
+  <td>new</td>
+  <td>Create</td>
+  <td>new Date()</td>
+ </tr>
+ <tr>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+ </tr>
+ <tr>
+  <td>16</td>
+  <td>++</td>
+  <td>Postfix Increment</td>
+  <td>i++</td>
+ </tr>
+ <tr>
+  <td>16</td>
+  <td>--</td>
+  <td>Postfix Decrement</td>
+  <td>i--</td>
+ </tr>
+ <tr>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+ </tr>
+ <tr>
+  <td>15</td>
+  <td>++</td>
+  <td>Prefix Increment</td>
+  <td>++i</td>
+ </tr>
+ <tr>
+  <td>15</td>
+  <td>--</td>
+  <td>Prefix Decrement</td>
+  <td>--i</td>
+ </tr>
+ <tr>
+  <td>15</td>
+  <td>!</td>
+  <td>Logical not</td>
+  <td>!(x==y)</td>
+ </tr>
+ <tr>
+  <td>15</td>
+  <td>typeof</td>
+  <td>Type</td>
+  <td>typeof x</td>
+ </tr>
+ <tr>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+ </tr>
+ <tr>
+  <td>14</td>
+  <td>*</td>
+  <td>Multiplication</td>
+  <td>10 * 5</td>
+ </tr>
+ <tr>
+  <td>14</td>
+  <td>/</td>
+  <td>Division</td>
+  <td>10 / 5</td>
+ </tr>
+ <tr>
+  <td>14</td>
+  <td>%</td>
+  <td>Modulo division</td>
+  <td>10 % 5</td>
+ </tr>
+ <tr class="w3-pale-red">
+  <td>14</td>
+  <td>**</td>
+  <td>Exponentiation</td>
+  <td>10 ** 2</td>
+ </tr>
+ <tr>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+ </tr>
+ <tr>
+  <td>13</td>
+  <td>+</td>
+  <td>Addition</td>
+  <td>10 + 5</td>
+ </tr>
+ <tr>
+  <td>13</td>
+  <td>-</td>
+  <td>Subtraction</td>
+  <td>10 - 5</td>
+ </tr>
+ <tr>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+ </tr>
+ <tr>
+  <td>12</td>
+  <td>&lt;&lt;</td>
+  <td>Shift left</td>
+  <td>x &lt;&lt; 2</td>
+ </tr>
+ <tr>
+  <td>12</td>
+  <td>&gt;&gt;</td>
+  <td>Shift right</td>
+  <td>x &gt;&gt; 2</td>
+ </tr>
+ <tr>
+  <td>12</td>
+  <td>&gt;&gt;&gt;</td>
+  <td>Shift right (unsigned)</td>
+  <td>x &gt;&gt;&gt; 2</td>
+ </tr>
+ <tr>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+ </tr>
+ <tr>
+  <td>11</td>
+  <td>&lt;</td>
+  <td>Less than</td>
+  <td>x &lt; y&nbsp;</td>
+ </tr>
+ <tr>
+  <td>11</td>
+  <td>&lt;=</td>
+  <td>Less than or equal</td>
+  <td>x &lt;= y</td>
+ </tr>
+ <tr>
+  <td>11</td>
+  <td>&gt;</td>
+  <td>Greater than</td>
+  <td>x &gt; y</td>
+ </tr>
+ <tr>
+  <td>11</td>
+  <td>&gt;=</td>
+  <td>Greater than or equal</td>
+  <td>x &gt;= y</td>
+ </tr>
+ <tr>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+ </tr>
+ <tr>
+  <td>10</td>
+  <td>==</td>
+  <td>Equal</td>
+  <td>x == y</td>
+ </tr>
+ <tr>
+  <td>10</td>
+  <td>===</td>
+  <td>Strict equal</td>
+  <td>x === y</td>
+ </tr>
+ <tr>
+  <td>10</td>
+  <td>!=</td>
+  <td>Unequal</td>
+  <td>x != y</td>
+ </tr>
+ <tr>
+  <td>10</td>
+  <td>!==</td>
+  <td>Strict unequal</td>
+  <td>x !== y</td>
+ </tr>
+ <tr>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+ </tr>
+ <tr>
+  <td>6</td>
+  <td>&amp;&amp;</td>
+  <td>Logical and</td>
+  <td>x &amp;&amp; y</td>
+ </tr>
+ <tr>
+  <td>5</td>
+  <td>||</td>
+  <td>Logical or</td>
+  <td>x || y</td>
+ </tr>
+ <tr>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+ </tr>
+ <tr>
+  <td>3</td>
+  <td>=</td>
+  <td>Assignment</td>
+  <td>x = y</td>
+ </tr>
+ <tr>
+  <td>3</td>
+  <td>+=</td>
+  <td>Assignment</td>
+  <td>x += y</td>
+ </tr>
+ <tr>
+  <td>3</td>
+  <td>-=</td>
+  <td>Assignment</td>
+  <td>x -= y</td>
+ </tr>
+ <tr>
+  <td>3</td>
+  <td>*=</td>
+  <td>Assignment</td>
+  <td>x *= y</td>
+ </tr>
+ <tr>
+  <td>3</td>
+  <td>%=</td>
+  <td>Assignment</td>
+  <td>x %= y</td>
+ </tr>
+ <tr>
+  <td>3</td>
+  <td>&lt;&lt;=</td>
+  <td>Assignment</td>
+  <td>x &lt;&lt;= y</td>
+ </tr>
+ <tr>
+  <td>3</td>
+  <td>&gt;&gt;=</td>
+  <td>Assignment</td>
+  <td>x &gt;&gt;= y</td>
+ </tr>
+ <tr>
+  <td>3</td>
+  <td>&gt;&gt;&gt;=</td>
+  <td>Assignment</td>
+  <td>x &gt;&gt;&gt;= y</td>
+ </tr>
+ <tr>
+  <td>3</td>
+  <td>&amp;=</td>
+  <td>Assignment</td>
+  <td>x &amp;= y</td>
+ </tr>
+ <tr>
+  <td>3</td>
+  <td>^=</td>
+  <td>Assignment</td>
+  <td>x ^= y</td>
+ </tr>
+ <tr>
+  <td>3</td>
+  <td>|=</td>
+  <td>Assignment</td>
+  <td>x |= y</td>
+ </tr>
+</tbody></table>
+
+<div class="w3-panel w3-warning">
+<p>Pale red entries indicates experimental or proposed technology (ECMASScript 2016 or ES7)</p>
+</div>
+
+<p>
+</p><div class="w3-panel w3-note">
+<p>Expressions in parentheses are fully computed before the value is 
+used in the rest of the expression.</p>
+</div>
+<p></p>
+
+<hr>
+</div>
