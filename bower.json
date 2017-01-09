@@ -1,0 +1,19 @@
+{
+  "name": "jsdemo",
+  "description": "<div id=\"AT\" class=\"container-article  fixed\">",
+  "main": "app.js",
+  "license": "ISC",
+  "homepage": "",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular-resource": "^1.6.1",
+    "resource.js": "^1.0.2",
+    "angular": "^1.6.1"
+  }
+}
