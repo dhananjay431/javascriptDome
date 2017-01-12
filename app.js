@@ -1,60 +1,69 @@
 var express = require('express')
+var jwt = require('jsonwebtoken');
 var router = express.Router()
 var mongoose = require('mongoose');
 var bodyParser = require('body-parser');
 var path= require('path');
 var app = express();
 
+app.use(bodyParser.json())
 
 router.use(function (req, res, next) {
-  console.log('Time:', Date.now())
-  console.log('req.baseUrl', req.baseUrl)
-  console.log('req.hostname',req.hostname)
-  console.log('res.get(mytoken)',res.get('mytoken'))
-  
-  res.set({
-  'mytoken': '12345'
+jwt.verify(req.get('ETag'), 'shhhhh', function(err, decoded) {
+  if(decoded != undefined)
+  {
+	next();
+  }else{
+   res.sendFile(path.join(__dirname + '/public/index.html'));
+  }
 });
-  
-  
-  next()
 })
-app.use('/api/v1/', router)
-
-
-
-app.use(bodyParser.urlencoded({
-    extended: true
-}));
-app.use(bodyParser.json());
-
+mongoose.connect('mongodb://localhost/test');
+var appFormSchema =new mongoose.Schema({}, {strict: false});
+var Cat = mongoose.model('Cats',appFormSchema);
 app.use('/', express.static(path.join(__dirname, '/public')))
 app.use('/', express.static(path.join(__dirname, '/bower_components')))
 app.use(bodyParser.json({ type: 'application/*+json' }));
 
-mongoose.connect('mongodb://localhost/test');
-var appFormSchema =new mongoose.Schema({}, {strict: false});
-var Cat = mongoose.model('Cats',appFormSchema);
+app.get('/123', function (req, res) {
+var token = jwt.sign({ foo: 'bar' }, 'shhhhh');
+
+return res.send({"token":token});
+});
 
 router.get('/db', function (req, res) {
-Cat.find({ name:'dhananjay' }).exec(function (err, small) {
+//var token = jwt.sign({ foo: 'bar' }, 'shhhhh');
+
+
+console.log('req.get(ETag)',req.get('ETag'));
+	
+  Cat.find({ TABLENAME:req.query.name },{"__v": 0, "TABLENAME": 0}).exec(function (err, small) {
   if (err) 
   return  res.send('error');
   else
   return  res.send(small);
 });
+
+
+
+
 });
+
+
 router.post('/db', function (req, res) {
-  
-var CAT=new Cat(req.body);
+console.log("req.get('ETag')",req.get('ETag'));
+var x=req.body;
+x.TABLENAME=req.query.name;
+console.log(x);
+var CAT=new Cat(x);
+if(req.get('ETag'))
 CAT.save(function (err) {
   if (err) return res.send(err);
   else
   return res.send("success");
-  
 })
 
 });
- 
+app.use('/api/v1/', router)
 app.listen(3000)
 

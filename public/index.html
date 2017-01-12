@@ -11,22 +11,57 @@
   <link rel="stylesheet" href="css/style.css">
   <script>
   angular.module('todoApp', ['ngResource'])
-  .controller('TodoListController', function($resource) {
+  .run(function($http) {
+		$http.defaults.headers.common.Authorization = 'Basic YmVlcDpib29w';
+		
+		$http.defaults.headers.get={"ETag":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmb28iOiJiYXIiLCJpYXQiOjE0ODQyMjI0MDd9.DN6AZ1YuQtU318sHK4C-U1bO5yw-3KA3CakxiQk8qDg"};
+	})
+  .controller('TodoListController', function($resource,$scope) {
     var data = this;
     data.signupFun=signupFun;
-    //z=$resource(url, [paramDefaults], [actions], options);
-    var z=$resource('http://localhost:3000/api/v1/db',{},{
-         'get':{method:'GET', isArray:true},
-         'save':{method:'POST'},
+    //var token=$resource(url, [paramDefaults], [actions], options);
+	
+	
+	function getCookie(cname) {
+    var name = cname + "=";
+    var decodedCookie = decodeURIComponent(document.cookie);
+    var ca = decodedCookie.split(';');
+    for(var i = 0; i <ca.length; i++) {
+        var c = ca[i];
+        while (c.charAt(0) == ' ') {
+            c = c.substring(1);
+        }
+        if (c.indexOf(name) == 0) {
+            return c.substring(name.length, c.length);
+        }
+    }
+    return "";
+}
+	var tokenRES=$resource('http://localhost:3000/123', {});
+	tokenRES.get().$promise.then(function(res){
+		var d = new Date();
+		d.setTime(d.getTime() + (30*1000));
+		var expires = "expires="+ d.toUTCString();
+		document.cookie= "token="+ get.token +"; expires="+ expires +"; path=/;";
+		console.log("inn",getCookie('token'));
+	});
+
+	
+    var z=$resource('http://localhost:3000/api/v1/db?name=dhananjay',{},{
+         'get':{method:'GET'},
+         'save':{method:'POST',},
       });
+	  z.get();
+	  var z1=$resource('http://ipinfo.io',{},{'getip':{method:'GET'}});
+	  z1.getip();
+	  
+		 
     function signupFun()
     {
         z.get();
         z.save(data.signup);
-      
 
-      
-      
+		 
     }
 
   });
@@ -52,14 +87,14 @@
               <label>
                 First Name<span class="req">*</span>
               </label>
-              <input type="text" required autocomplete="off" ng-name="data.signup.fname" />
+              <input type="text" required autocomplete="off" ng-model="data.signup.fname" />
             </div>
         
             <div class="field-wrap">
               <label>
                 Last Name<span class="req">*</span>
               </label>
-              <input type="text"required autocomplete="off" ng-name="data.signup.lname"/>
+              <input type="text"required autocomplete="off" ng-model="data.signup.lname"/>
             </div>
           </div>
 
@@ -67,19 +102,20 @@
             <label>
               Email Address<span class="req">*</span>
             </label>
-            <input type="email"required autocomplete="off" ng-name="data.signup.email" />
+            <input type="email"required autocomplete="off" ng-model="data.signup.email" />
           </div>
           
           <div class="field-wrap">
             <label>
               Set A Password<span class="req">*</span>
             </label>
-            <input type="password"required autocomplete="off" ng-name="data.signup.pass"/>
+            <input type="password"required autocomplete="off" ng-model="data.signup.pass"/>
           </div>
           
           <button type="submit" class="button button-block" ng-click="data.signupFun()"/>Get Started</button>
           
           </form>
+		  
 
         </div>
         
