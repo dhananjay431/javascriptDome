@@ -5,17 +5,18 @@ var mongoose = require('mongoose');
 var bodyParser = require('body-parser');
 var path= require('path');
 var app = express();
-
+var requestIp = require('request-ip');
 app.use(bodyParser.json())
 
 router.use(function (req, res, next) {
-jwt.verify(req.get('ETag'), 'shhhhh', function(err, decoded) {
-  if(decoded != undefined)
-  {
-	next();
-  }else{
-   res.sendFile(path.join(__dirname + '/public/index.html'));
-  }
+
+console.log("req.ip",req.ip);
+	var clientIp = requestIp.getClientIp(req); 
+	console.log("IP",clientIp);
+jwt.verify(req.get('ETag'), 'secret', function(err, decoded) {
+		if(err) 
+		return res.sendFile(path.join(__dirname + '/public/index.html'));
+		next();	
 });
 })
 mongoose.connect('mongodb://localhost/test');
@@ -26,9 +27,14 @@ app.use('/', express.static(path.join(__dirname, '/bower_components')))
 app.use(bodyParser.json({ type: 'application/*+json' }));
 
 app.get('/123', function (req, res) {
-var token = jwt.sign({ foo: 'bar' }, 'shhhhh');
+var d = new Date();
+var ee=d.setTime(d.getTime() / 1000 +(60 * 60));
+var token=jwt.sign({
+  exp:ee,
+  data: 'secret'
+}, 'secret');
 
-return res.send({"token":token});
+return res.send(token);
 });
 
 router.get('/db', function (req, res) {

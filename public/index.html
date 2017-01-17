@@ -12,17 +12,43 @@
   <script>
   angular.module('todoApp', ['ngResource'])
   .run(function($http) {
-		$http.defaults.headers.common.Authorization = 'Basic YmVlcDpib29w';
+  
+  console.log("run");
+  
+  $http.get('http://10.0.1.6:3000/123').then(function(res){
+			localStorage.ETag=res.data;
+		}, function(res){
+		});
 		
-		$http.defaults.headers.get={"ETag":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmb28iOiJiYXIiLCJpYXQiOjE0ODQyMjI0MDd9.DN6AZ1YuQtU318sHK4C-U1bO5yw-3KA3CakxiQk8qDg"};
+  
+		
 	})
   .controller('TodoListController', function($resource,$scope) {
     var data = this;
     data.signupFun=signupFun;
-    //var token=$resource(url, [paramDefaults], [actions], options);
-	
-	
-	function getCookie(cname) {
+	console.log("CTRL");
+	console.log(localStorage.ETag);
+    var z=$resource('http://10.0.1.6:3000/api/v1/db?name=USER',{},{
+         'get':{method:'GET',headers:{"ETag":localStorage.ETag}},
+         'save':{method:'POST',headers:{"ETag":localStorage.ETag}},
+      });
+	  z.get();
+	  
+	  var z1=$resource('https://api.ipify.org/?format=json',{},{'getip':{method:'GET'}});
+	  z1.getip();
+	  
+		 
+    function signupFun()
+    {
+        //z.get();
+       z.save(data.signup);
+
+		 
+    }
+
+  });
+  
+  function getCookie(cname) {
     var name = cname + "=";
     var decodedCookie = decodeURIComponent(document.cookie);
     var ca = decodedCookie.split(';');
@@ -36,35 +62,8 @@
         }
     }
     return "";
-}
-	var tokenRES=$resource('http://localhost:3000/123', {});
-	tokenRES.get().$promise.then(function(res){
-		var d = new Date();
-		d.setTime(d.getTime() + (30*1000));
-		var expires = "expires="+ d.toUTCString();
-		document.cookie= "token="+ get.token +"; expires="+ expires +"; path=/;";
-		console.log("inn",getCookie('token'));
-	});
-
+	}
 	
-    var z=$resource('http://localhost:3000/api/v1/db?name=dhananjay',{},{
-         'get':{method:'GET'},
-         'save':{method:'POST',},
-      });
-	  z.get();
-	  var z1=$resource('http://ipinfo.io',{},{'getip':{method:'GET'}});
-	  z1.getip();
-	  
-		 
-    function signupFun()
-    {
-        z.get();
-        z.save(data.signup);
-
-		 
-    }
-
-  });
   </script>
 </head>
 
