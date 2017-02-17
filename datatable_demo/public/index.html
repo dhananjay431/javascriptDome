@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <!-- <link rel="stylesheet" href="style.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/datatables/1.10.13/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.1/angular.min.js"></script>
+
+-->
+    <!-- <script src="datatables/media/js/jquery.js"></script> -->
+        <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-datatables/0.6.0/angular-datatables.min.js"></script> -->
+
+    
+    
+    
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+    <link rel="stylesheet" href="angular-datatables\dist\css\angular-datatables.min.css">
+    
+  </head>
+
+  <body ng-app="todoApp">
+      <div ng-controller="TodoListController as todoList">
+	    <h2>Validation </h2>
+      <div class="form-group" ng-class="{'has-error':todoList.data>100}">
+        <input type="text" ng-model="todoList.data" class="form-control">
+      </div>
+		            <table 
+                datatable="" 
+                dt-options="todoList.dtOptions" 
+                dt-columns="todoList.dtColumns" 
+                dt-instance="todoList.insinit"
+                ></table>
+
+                <input type="button" ng-click="todoList.initCall()" value="ok" >
+       <!-- {{todoList.dtOptions}}
+       {{todoList.dtColumns}}
+       {{todoList.dtICOBJ}} -->
+    </div>
+
+        <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+    <script src="datatables/media/js/jquery.dataTables.min.js"></script>
+    <script src="angular/angular.min.js"></script>
+
+
+    <script src="angular-datatables/dist/angular-datatables.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-resource/1.6.2/angular-resource.min.js"></script> 
+    
+
+    <script src="script.js"></script>
+  </body>
+</html>

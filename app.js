@@ -9,7 +9,8 @@ var requestIp = require('request-ip');
 app.use(bodyParser.json())
 
 router.use(function (req, res, next) {
-
+ //var clientIp = requestIp.getClientIp(req); 
+ //return res.send({"ip":clientIp});
 console.log("req.ip",req.ip);
 	var clientIp = requestIp.getClientIp(req); 
 	console.log("IP",clientIp);
@@ -33,8 +34,7 @@ var token=jwt.sign({
   exp:ee,
   data: 'secret'
 }, 'secret');
-
-return res.send(token);
+return res.send({"token":token});
 });
 
 router.get('/db', function (req, res) {
