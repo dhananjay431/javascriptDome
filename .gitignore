@@ -2,3 +2,7 @@ node_modules/
 bower_components/
 datatable_demo/bower_components
 datatable_demo/node_modules
+tree_struc/.ebextensions
+tree_struc/lib
+tree_struc/node_modules
+tree_struc/test

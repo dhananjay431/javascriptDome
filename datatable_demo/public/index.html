@@ -31,7 +31,9 @@
                 dt-options="todoList.dtOptions" 
                 dt-columns="todoList.dtColumns" 
                 dt-instance="todoList.insinit"
+				class="row-border hover"
                 ></table>
+				<button ng-click="todoList.showdtI()"> ssadasd</button>
 
                 <input type="button" ng-click="todoList.initCall()" value="ok" >
        <!-- {{todoList.dtOptions}}
@@ -39,13 +41,19 @@
        {{todoList.dtICOBJ}} -->
     </div>
 
-        <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+	
     <script src="datatables/media/js/jquery.dataTables.min.js"></script>
     <script src="angular/angular.min.js"></script>
 
-
     <script src="angular-datatables/dist/angular-datatables.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-resource/1.6.2/angular-resource.min.js"></script> 
+	<script src="http://l-lin.github.io/angular-datatables/archives/vendor/datatables-columnfilter/js/dataTables.columnFilter.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/angular-datatables/0.6.1/plugins/columnfilter/angular-datatables.columnfilter.js"></script>
+	<script src="http://l-lin.github.io/angular-datatables/archives/vendor/datatables-light-columnfilter/dist/dataTables.lightColumnFilter.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/angular-datatables/0.6.1/plugins/light-columnfilter/angular-datatables.light-columnfilter.js"></script>
+	
+	
     
 
     <script src="script.js"></script>

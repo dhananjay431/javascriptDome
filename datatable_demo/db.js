@@ -6,13 +6,38 @@ var app = express();
 var bodyParser = require('body-parser')
 mongoose.connect('mongodb://10.0.1.9/tw-qa-20170106');
 app.use(bodyParser.json())
-//DataTable.configure(options);
+DataTable.configure({ verbose: true, debug : true });
 mongoose.plugin(DataTable.init);
+
 var Cat = mongoose.model('TXN_Organizations',new mongoose.Schema({}, {strict: false}));
-var Per = mongoose.model('TXN_Personnels',new mongoose.Schema({}, {strict: false}));
+var Per = mongoose.model('TXN_personnels',new mongoose.Schema({}, {strict: false}));
 
-//var Cat = mongoose.model('TXN_WebUserLog',new mongoose.Schema({"name":String}));
+function evaluate(object) {
+    if (object && object.constructor === Array) {
+        for (var i = 0; i < object.length; i++) {
+            object[i] = evaluate(object[i]);
+        }
+    } else if (object && typeof object == 'object' && Object.keys(object).length > 0) {
+        if (Object.keys(object).indexOf('_eval') < 0) {
+            for (var key in object) {
+                object[key] = evaluate(object[key]);
+            }
+        } else switch (object['_eval']) {
+            case 'Id':
+                {
+                    object = mongoose.Types.ObjectId(object['value']);
+                    break;
+                }
+			case 'regex':
+                {
+                    object = new RegExp(object['value'], 'i');
+                    break;
+                }
 
+        }
+    }
+    return object;
+}
 
 app.use('/', express.static(path.join(__dirname, '/public')))
 app.use('/', express.static(path.join(__dirname, '/bower_components')))
@@ -20,88 +45,27 @@ app.get('/',function(){
 		return res.sendFile(path.join(__dirname + '/public/index.html'));	
 });
 
-
-app.get('/getdata', function (req, res) {
-// 	Cat.find({name:'Zildjian'},function(err,data){
-// 	  if (err) {
-//     res.send(err);
-//   } else {
-//     	res.send({"data":data});
-//   }
-// })
-var personnelPopulations = [
-    { path: 'orgUserId', match: { active: true, deleted: false } },
-    { path: 'titleMaster', match: { active: true, deleted: false } },
-    { path: 'officers.officerTypeId', match: { active: true, deleted: false } },
-    { path: 'officers.listingType', match: { active: true, deleted: false } },
-    { path: 'personType', match: { active: true, deleted: false } },
-    { path: 'address.addressType', match: { active: true, deleted: false } },
-    { path: 'address.city', match: { active: true, deleted: false } },
-    { path: 'address.state', match: { active: true, deleted: false } },
-    { path: 'address.country', match: { active: true, deleted: false } },
-    { path: 'address.county', match: { active: true, deleted: false } },
-    { path: 'ocdDegree.degreeType', match: { active: true, deleted: false } },
-    { path: 'assignment.assignTypeId', match: { active: true, deleted: false } },
-    { path: 'status', match: { active: true, deleted: false } },
-    { path: 'ocdContact.contactType', match: { active: true, deleted: false } },
-    { path: 'responsibilityCodes.responsibilityCode', match: { active: true, deleted: false } },
-];
-
- Cat.find({"name":"4 Culture"})
- .populate({path: 'personnel'})
- .exec( function(err,data){
-	  if (err) {
-    res.send(err);
-  } else {
-    	res.send({"data":data});
-  }
-})
-
-
-
-});
-
-
-//{"_id":{"$in":["58a41730acaa2eaead047e80","58a198956bbcc6a80cff1e00"]}}
 app.post('/getdata', function (req, res) {
-console.log(req.body);
-//var option={'conditions':{"name":new RegExp(req.body.dt.search.value,'i')}};
-
-req.body.qr.directoryId=mongoose.Types.ObjectId(req.body.qr.directoryId);
-Cat.find(req.body.qr,function(err,data){
-	  if (err) {
-    res.send(err);
-  } else {
-
-  var arr=	data.map(function(d){
-  		return d._id;
-  	});
-//'_id','name','timing','personnel'
-var op={"conditions":{"_id":{"$in":arr}},"select":['name',"personnel.title"]};
-  	dt(req.body.dt,op,function(err,dtData){
-      		if(err) return  res.send(err);		
-      		console.log("dtData",dtData);
-      		res.send(dtData);
-
-  	});
-  	}
+req.body=evaluate(req.body);
+	var dtop={
+	conditions: req.body.qr,
+	select:['name',"_id","classificationCodeName"]};
+	
+console.log('req.body.dt',JSON.stringify(evaluate(req.body.dt)));
+	Cat.dataTable(evaluate(req.body.dt),dtop,function(err,d){ res.send(d)});
 })
-
-
-
-// var option={'conditions':};
-// option.select=['_id','name'];
-
-// 	dt(req.body.dt,option,function(err, data) {
-//     	if(err) return  res.send(err);
-//      	res.send(data);
-// 	});
-});
-
-function dt(qr,op,cb){
-	Cat.dataTable(qr,op,cb);
-}
+app.post('/pgetdata', function (req, res) {
+req.body=evaluate(req.body);
+	var dtop={
+	conditions: req.body.qr,
+	select:["_id","PeopleId","org_id","titleMasterName","homeDiocese","address.cityName","address.stateName","address.zip","address.countryName","address.sequenceNo","address.stateAbbreviation"]};
+	
+	
+console.log('req.body.dt',JSON.stringify(evaluate(req.body.dt)));
+	Per.dataTable(evaluate(req.body.dt),dtop,function(err,d){ res.send(d)});
+})
 
 app.listen(3000, function () {
   console.log('Example app listening on port 3000!')
 })
+

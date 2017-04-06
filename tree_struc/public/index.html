@@ -1,0 +1,29 @@
+<html ng-app="todoApp">
+  <head>
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.17.4/lodash.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.3/angular.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/angular-resource/1.6.4/angular-resource.min.js"></script>
+	<script src="script.js"></script>
+	
+	 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jstree/3.2.1/themes/default/style.min.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.12.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jstree/3.2.1/jstree.min.js"></script>
+
+	
+  </head>
+  <body>
+    <div ng-controller="TodoListController as todoList">
+		<div id="list">
+
+		</div>
+		<input type="text" ng-model="todoList.parent">
+		
+		<button ng-click="todoList.show()">  show Tree </button>
+		
+		<ul ng-repeat="val in todoList.tree">
+			<li>{{val.title}} </li>
+		</ul>
+    </div>
+  </body>
+</html>
