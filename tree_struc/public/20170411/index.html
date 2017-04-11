@@ -1,0 +1,68 @@
+<html ng-app="todoApp">
+  <head>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.12.1/jquery.min.js"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.17.4/lodash.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.3/angular.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/angular-resource/1.6.4/angular-resource.min.js"></script>
+	<script src="script.js"></script>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jstree/3.2.1/themes/default/style.min.css" />
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jstree/3.2.1/jstree.min.js"></script>
+	<style>
+	.clt, .clt ul, .clt li {
+     position: relative;
+}
+
+.clt ul {
+    list-style: none;
+    padding-left: 32px;
+}
+.clt li::before, .clt li::after {
+    content: "";
+    position: absolute;
+    left: -12px;
+}
+.clt li::before {
+    border-top: 1px solid #000;
+    top: 9px;
+    width: 8px;
+    height: 0;
+}
+.clt li::after {
+    border-left: 1px solid #000;
+    height: 100%;
+    width: 0px;
+    top: 2px;
+}
+.clt ul > li:last-child::after {
+    height: 8px;
+}
+	</style>
+  </head>
+  <body>
+  <script type="text/ng-template"  id="my-tmpl">
+    
+	<a href="http://10.0.1.6:4000/portal/directory/organization/edit/{{data.id}}/general"> {{data.name }}</a>
+    <ul>
+        <li ng-repeat="data in data.children" ng-include="'my-tmpl'">
+		</li>
+    </ul>
+	</script>
+
+    <div ng-controller="TodoListController as todoList">
+		<input type="text" ng-model="todoList.parent">
+		
+		<button ng-click="todoList.show()">  show Tree </button>
+	<div class="clt">
+		<ul>
+		   <li ng-repeat="data in todoList.td" ng-include="'my-tmpl'"></li>
+		</ul>
+	</div>	
+	
+		
+    </div>
+  </body>
+</html>

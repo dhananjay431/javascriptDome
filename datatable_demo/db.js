@@ -4,9 +4,9 @@ var mongoose = require('mongoose');
 var DataTable = require('mongoose-datatable');
 var app = express();
 var bodyParser = require('body-parser')
-mongoose.connect('mongodb://10.0.1.9/tw-qa-20170106');
+mongoose.connect('mongodb://10.0.1.131/tw-uat-31-03-2017');
 app.use(bodyParser.json())
-DataTable.configure({ verbose: true, debug : true });
+//DataTable.configure({ verbose: true, debug : true });
 mongoose.plugin(DataTable.init);
 
 var Cat = mongoose.model('TXN_Organizations',new mongoose.Schema({}, {strict: false}));
@@ -56,12 +56,13 @@ console.log('req.body.dt',JSON.stringify(evaluate(req.body.dt)));
 })
 app.post('/pgetdata', function (req, res) {
 req.body=evaluate(req.body);
+//console.log(JSON.stringify(req.body.dt,undefined,3));
+console.dir(req.body.dt, {depth: null, colors: true})
 	var dtop={
 	conditions: req.body.qr,
-	select:["_id","PeopleId","org_id","titleMasterName","homeDiocese","address.cityName","address.stateName","address.zip","address.countryName","address.sequenceNo","address.stateAbbreviation"]};
-	
-	
-console.log('req.body.dt',JSON.stringify(evaluate(req.body.dt)));
+	//select:["_id","PeopleId","org_id","titleMasterName","homeDiocese","address.cityName","address.stateName","address.zip","address.countryName","address.sequenceNo","address.stateAbbreviation"]
+	select:["PeopleId","address.cityName","orgId.name"]
+	};
 	Per.dataTable(evaluate(req.body.dt),dtop,function(err,d){ res.send(d)});
 })
 

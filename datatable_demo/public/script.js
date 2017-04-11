@@ -62,7 +62,7 @@ angular.module('todoApp', ['ngResource','datatables','datatables.columnfilter','
               DTColumnBuilder.
 			  newColumn('PeopleId')
               .withTitle('PeopleId')
-              .withOption('width', '15%')
+              .withOption('width', '15%'),
 			  
 			  DTColumnBuilder.
 			  newColumn('address.cityName')
