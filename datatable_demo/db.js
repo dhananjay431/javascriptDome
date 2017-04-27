@@ -4,7 +4,7 @@ var mongoose = require('mongoose');
 var DataTable = require('mongoose-datatable');
 var app = express();
 var bodyParser = require('body-parser')
-mongoose.connect('mongodb://10.0.1.131/tw-uat-31-03-2017');
+mongoose.connect('mongodb://10.0.1.9/tw-uat-31-03-2017');
 app.use(bodyParser.json())
 //DataTable.configure({ verbose: true, debug : true });
 mongoose.plugin(DataTable.init);
@@ -54,19 +54,33 @@ req.body=evaluate(req.body);
 console.log('req.body.dt',JSON.stringify(evaluate(req.body.dt)));
 	Cat.dataTable(evaluate(req.body.dt),dtop,function(err,d){ res.send(d)});
 })
+
 app.post('/pgetdata', function (req, res) {
 req.body=evaluate(req.body);
 //console.log(JSON.stringify(req.body.dt,undefined,3));
 console.dir(req.body.dt, {depth: null, colors: true})
+    var dtop={
+    conditions: req.body.qr,
+    //select:["_id","PeopleId","org_id","titleMasterName","homeDiocese","address.cityName","address.stateName","address.zip","address.countryName","address.sequenceNo","address.stateAbbreviation"]
+    select:["PeopleIdNumber","address.cityName","orgId.name"]
+    };
+    Per.dataTable(evaluate(req.body.dt),dtop,function(err,d){ res.send(d)});
+})
+
+app.post('/ogetdata', function (req, res) {
+req.body=evaluate(req.body);
+    var arr=[];
+    for(var i=0;i<req.body.dt.columns.length;i++)
+    {
+        arr.push(req.body.dt.columns[i].data);
+    }
 	var dtop={
 	conditions: req.body.qr,
-	//select:["_id","PeopleId","org_id","titleMasterName","homeDiocese","address.cityName","address.stateName","address.zip","address.countryName","address.sequenceNo","address.stateAbbreviation"]
-	select:["PeopleId","address.cityName","orgId.name"]
+	select:arr
 	};
-	Per.dataTable(evaluate(req.body.dt),dtop,function(err,d){ res.send(d)});
+	Cat.dataTable(evaluate(req.body.dt),dtop,function(err,d){ res.send(d)});
 })
 
 app.listen(3000, function () {
   console.log('Example app listening on port 3000!')
 })
-

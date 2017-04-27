@@ -12,7 +12,7 @@
         <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-datatables/0.6.0/angular-datatables.min.js"></script> -->
 
     
-    
+<link rel="stylesheet" href="style.css">    
     
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 
@@ -22,23 +22,12 @@
 
   <body ng-app="todoApp">
       <div ng-controller="TodoListController as todoList">
-	    <h2>Validation </h2>
-      <div class="form-group" ng-class="{'has-error':todoList.data>100}">
-        <input type="text" ng-model="todoList.data" class="form-control">
-      </div>
-		        <table 
-                datatable="" 
-                dt-options="todoList.dtOptions" 
-                dt-columns="todoList.dtColumns" 
-                dt-instance="todoList.insinit"
-				class="row-border hover"
-                ></table>
-				<button ng-click="todoList.showdtI()"> ssadasd</button>
 
-                <input type="button" ng-click="todoList.initCall()" value="ok" >
-       <!-- {{todoList.dtOptions}}
-       {{todoList.dtColumns}}
-       {{todoList.dtICOBJ}} -->
+
+
+<div ng-include src="temp" ng-controller="tpl as todoList"></div>
+<!-- <div ng-include src="todoList.temp" ng-controller="org as todoList"></div> -->
+  
     </div>
 
     <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
@@ -52,10 +41,30 @@
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/angular-datatables/0.6.1/plugins/columnfilter/angular-datatables.columnfilter.js"></script>
 	<script src="http://l-lin.github.io/angular-datatables/archives/vendor/datatables-light-columnfilter/dist/dataTables.lightColumnFilter.min.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/angular-datatables/0.6.1/plugins/light-columnfilter/angular-datatables.light-columnfilter.js"></script>
-	
-	
-    
-
-    <script src="script.js"></script>
+<script src="script.js"></script>
   </body>
 </html>
+<script type="text/ng-template" id="tpl" >
+<center><h1>personnel</h1></center>
+<table 
+                datatable="" 
+                dt-options="dtOptions" 
+                dt-columns="dtColumns" 
+                dt-instance="insinit"
+                class="row-border hover"
+                ></table>
+</script>
+<script type="text/ng-template" id="org" >
+<center><h1>org</h1></center>
+name:<input type="text" ng-model="todoList.qr.name.val"><br>
+dioceseTypeName:<input type="text" ng-model="todoList.qr.dioceseTypeName.val"><br>
+
+<button ng-click="todoList.search()">search</button>
+<table 
+                datatable="" 
+                dt-options="todoList.dtOptions" 
+                dt-columns="todoList.dtColumns" 
+                dt-instance="todoList.insinit"
+                class="row-border hover"
+                ></table>
+</script>
