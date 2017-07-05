@@ -6,3 +6,5 @@ tree_struc/.ebextensions
 tree_struc/lib
 tree_struc/node_modules
 tree_struc/test
+/gradschoolshopper/node_modules/
+gradschoolshopper/dist/

@@ -1,0 +1,19 @@
+{
+  "name": "gradschoolshopper",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "dependencies": {
+    "body-parser": "^1.17.2",
+    "express": "^4.15.3",
+    "mongo-datatable": "^1.0.1",
+    "path": "^0.12.7",
+    "mongoose": "^4.10.6"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC"
+}
