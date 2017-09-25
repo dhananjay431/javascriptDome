@@ -5,10 +5,20 @@
   "main": "app.js",
   "dependencies": {
     "body-parser": "^1.17.2",
+    "del": "^3.0.0",
     "express": "^4.15.3",
+    "groom": "^1.1.1",
+    "gulp-concat": "^2.6.1",
+    "gulp-sourcemaps": "^2.6.1",
+    "gulp-uglify": "^3.0.0",
+    "js2xmlparser": "^3.0.0",
+    "json2xml": "^0.1.3",
     "mongo-datatable": "^1.0.1",
-    "path": "^0.12.7",
-    "mongoose": "^4.10.6"
+    "mongoose": "^4.10.6",
+    "mongoose-datatable": "^1.0.6",
+    "npmlog": "^4.1.2",
+    "npmlog-file": "^0.1.4",
+    "path": "^0.12.7"
   },
   "devDependencies": {},
   "scripts": {
